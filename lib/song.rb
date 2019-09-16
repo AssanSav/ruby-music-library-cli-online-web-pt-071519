@@ -21,7 +21,8 @@ class Song
   end
   
   def save 
-    @@all << self 
+    @@all << self
+    self
   end
   
   def self.create(name)
@@ -51,10 +52,9 @@ class Song
   def self.new_from_filename(file)
     raw = file.gsub(".mp3", "")
     row = raw.split(" - ")
-    song_name = row[1]
     artist = Artist.find_or_create_by_name(row[0]) 
     genre = Genre.find_or_create_by_name(row[2])
-    Song.new(song_name, artist, genre)
+    Song.new(row[1], artist, genre)
   end
   
   def self.create_from_filename(file)

@@ -23,6 +23,7 @@ class Artist
   
   def save 
     @@all << self
+    self
   end 
   
   def self.create(name)
@@ -38,6 +39,7 @@ class Artist
   
   def genres 
     songs.collect {|song| song.genre}.uniq
+    #binding.pry
   end 
   
 end
